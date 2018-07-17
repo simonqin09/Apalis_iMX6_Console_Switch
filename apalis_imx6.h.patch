@@ -1,0 +1,29 @@
+--- a/include/configs/apalis_imx6.h	2018-07-17 10:17:14.865520381 +0800
++++ b/include/configs/apalis_imx6.h	2018-07-17 10:19:49.105452317 +0800
+@@ -46,7 +46,7 @@
+ #define CONFIG_MISC_INIT_R
+ 
+ #define CONFIG_MXC_UART
+-#define CONFIG_MXC_UART_BASE		UART1_BASE
++#define CONFIG_MXC_UART_BASE		UART4_BASE
+ 
+ /* Make the HW version stuff available in U-Boot env */
+ #define CONFIG_VERSION_VARIABLE		/* ver environment variable */
+@@ -154,7 +154,7 @@
+ 
+ /* allow to overwrite serial and ethaddr */
+ #define CONFIG_ENV_OVERWRITE
+-#define CONFIG_CONS_INDEX		1
++#define CONFIG_CONS_INDEX		4
+ #define CONFIG_BAUDRATE			115200
+ 
+ /* Command definition */
+@@ -262,7 +262,7 @@
+ 		"usb start ;" \
+ 		"setenv stdout serial,vga ; setenv stdin serial,usbkbd\0" \
+ 	"boot_file=uImage\0" \
+-	"console=ttymxc0\0" \
++	"console=ttymxc3\0" \
+ 	"defargs=enable_wait_mode=off vmalloc=400M\0" \
+ 	"dfu_alt_info=" DFU_ALT_EMMC_INFO "\0" \
+ 	EMMC_BOOTCMD \

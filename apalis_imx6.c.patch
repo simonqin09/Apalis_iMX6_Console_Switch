@@ -1,0 +1,48 @@
+--- a/board/toradex/apalis_imx6/apalis_imx6.c	2018-07-17 10:13:59.889537564 +0800
++++ b/board/toradex/apalis_imx6/apalis_imx6.c	2018-07-17 10:16:26.033532869 +0800
+@@ -106,6 +106,16 @@
+ 	MX6_PAD_CSI0_DAT11__UART1_TX_DATA | MUX_PAD_CTRL(UART_PAD_CTRL),
+ };
+ 
++/* Apalis UART3 */
++iomux_v3_cfg_t const uart4_pads_dce[] = {
++        MX6_PAD_KEY_COL0__UART4_TX_DATA | MUX_PAD_CTRL(UART_PAD_CTRL),
++        MX6_PAD_KEY_ROW0__UART4_RX_DATA | MUX_PAD_CTRL(UART_PAD_CTRL),
++};
++iomux_v3_cfg_t const uart4_pads_dte[] = {
++        MX6_PAD_KEY_COL0__UART4_RX_DATA | MUX_PAD_CTRL(UART_PAD_CTRL),
++        MX6_PAD_KEY_ROW0__UART4_TX_DATA | MUX_PAD_CTRL(UART_PAD_CTRL),
++};
++
+ #define PC MUX_PAD_CTRL(I2C_PAD_CTRL)
+ /* Apalis I2C1 */
+ struct i2c_pads_info i2c_pad_info1 = {
+@@ -329,15 +339,15 @@
+ static void setup_iomux_dte_uart(void)
+ {
+ 	setup_dtemode_uart();
+-	imx_iomux_v3_setup_multiple_pads(uart1_pads_dte,
+-					 ARRAY_SIZE(uart1_pads_dte));
++	imx_iomux_v3_setup_multiple_pads(uart4_pads_dte,
++					 ARRAY_SIZE(uart4_pads_dte));
+ }
+ 
+ static void setup_iomux_dce_uart(void)
+ {
+ 	setup_dcemode_uart();
+-	imx_iomux_v3_setup_multiple_pads(uart1_pads_dce,
+-					 ARRAY_SIZE(uart1_pads_dce));
++	imx_iomux_v3_setup_multiple_pads(uart4_pads_dce,
++					 ARRAY_SIZE(uart4_pads_dce));
+ }
+ 
+ #ifdef CONFIG_USB_EHCI_MX6
+@@ -1272,7 +1282,7 @@
+ #endif
+ 
+ static struct mxc_serial_platdata mxc_serial_plat = {
+-	.reg = (struct mxc_uart *)UART1_BASE,
++	.reg = (struct mxc_uart *)UART4_BASE,
+ 	.use_dte = true,
+ };
+ 
